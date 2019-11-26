@@ -67,6 +67,11 @@ class Jogo {
   cumprirObrigacoes() {
     this.hora += this.getTempoObrigacoes();
   }
+
+  avancarPeriodo() {
+    this.periodo += 1;
+  }
+
 }
 
 export default Jogo;

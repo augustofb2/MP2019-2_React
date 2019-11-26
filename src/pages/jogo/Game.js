@@ -5,6 +5,7 @@ import ContentSection from '../../layout/ContentSection';
 import { Card, CardContent, Typography, Container, Grid } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import ListaDisciplina from '../../components/lista-disciplinas/ListaDisciplinas';
+import Dashboard from '../../components/dashboard/Dashboard';
 
 
 const useStyles = makeStyles(theme =>( {
@@ -30,9 +31,17 @@ export default function Game(){
         atualizar();
     }, [gameSession]);
 
-        return(
-            <ListaDisciplina session={gameSession} />
-        )
+            if(gameSession.periodo === 0){
+                return(
+                    <ListaDisciplina session={gameSession} atualizar={atualizar} />
+                )
+            }
+            if(gameSession.periodo === 1){
+                return(
+                    <Dashboard session={gameSession} atualizar={atualizar} />
+                )
+            }
+            
 
     // return(
     //     <ContentSection>

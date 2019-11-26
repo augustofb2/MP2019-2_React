@@ -22,6 +22,11 @@ export default function ListaDisciplina(props) {
 
     const classes = useStyles();
 
+    const handleContinuar = () => {
+        props.session.avancarPeriodo();
+        props.atualizar();
+    }
+
     return <ContentSection>
         <Container maxWidth={'lg'}>
             <Typography variant={'h4'} className={classes.titulo} >
@@ -51,7 +56,7 @@ export default function ListaDisciplina(props) {
                 <Grid item xs={10}>
                 </Grid>
                 <Grid item xs={2}>
-                    <Button color={'primary'} variant={'contained'} size={'large'} >Continuar</Button>
+                    <Button color={'primary'} variant={'contained'} size={'large'} onClick={handleContinuar} >Continuar</Button>
                 </Grid>
             </Grid>
         </Container>
