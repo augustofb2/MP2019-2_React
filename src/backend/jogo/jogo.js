@@ -22,6 +22,7 @@ class Jogo {
     this.tempo = 0;
     this.hora = 7;
     this.diaSemana = 0;
+    this.cumprirObrigacoes();
   }
 
   verificarFimSemesre() {
@@ -37,7 +38,7 @@ class Jogo {
   }
 
   getTempoObrigacoes() {
-    return Math.ceil(2 + this.aluno.getCreditos() / 5 + this.aluno.getHorasEstagio());
+    return Math.ceil(2 + this.aluno.getCreditos() / 5);
   }
 
   avancarTempo(horas) {
@@ -65,7 +66,17 @@ class Jogo {
   }
 
   cumprirObrigacoes() {
-    this.hora += this.getTempoObrigacoes();
+    const horas = this.getTempoObrigacoes();
+    this.hora += horas;
+    this.aluno.estresse += horas * 3;
+    if (this.aluno.estresse > 100) { this.estresse = 100; }
+    this.aluno.cansaco += horas * 3;
+    if (this.aluno.cansaco < 100) { this.cansaco = 100; }
+    this.aluno.sono += horas * 6;
+    if (this.aluno.sono < 100) { this.sono = 100; }
+    this.aluno.lazer -= horas * 3;
+    if (this.aluno.lazer < 0) { this.lazer = 0; }
+    
   }
 
   avancarPeriodo() {

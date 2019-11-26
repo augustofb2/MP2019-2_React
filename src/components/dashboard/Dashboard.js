@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Paper, Container } from '@material-ui/core';
+import { Grid, Typography, Paper, Container, Card } from '@material-ui/core';
+import Estatisticas from '../estatisticas/Estatisticas';
 
 const useStyles = makeStyles(theme =>( {
     container: {
@@ -8,14 +9,18 @@ const useStyles = makeStyles(theme =>( {
       paddingTop: '2rem'
     },
     rightGrid: {
-        height: '90vh'
+        height: '89vh',
+        backgroundColor: '#cacaca',
     },
     lefttGrid: {
-        height: '45vh'
+        height: '44vh',
+        backgroundColor: '#cacaca',
+        marginRight: '0.5rem',
+        marginBottom: '0.5rem'
     }
   }));
 
-export default function Dashboard() {
+export default function Dashboard(props) {
 
     const classes = useStyles();
 
@@ -24,20 +29,21 @@ export default function Dashboard() {
             <Grid container spacing={5}>
                 <Grid item xs={6}>
                     <Grid container spacing={5}>
-                        <Grid item xs={12} className={classes.lefttGrid} component={Paper} color={'primary'}>
-                            <Typography>
+                        <Grid item xs={12} className={classes.lefttGrid} component={Paper}>
+                            <Typography variant={'h5'} paragraph>
                                 Estatísticas
                             </Typography>
+                            <Estatisticas session={props.session} />
                         </Grid>
                         <Grid item xs={12} className={classes.lefttGrid} component={Paper}>
-                            <Typography>
+                            <Typography variant={'h5'} paragraph>
                                 Previsões
                             </Typography>
                         </Grid>
                     </Grid>
                 </Grid>
                 <Grid item xs={6} className={classes.rightGrid} component={Paper}>
-                    <Typography>
+                    <Typography variant={'h5'} paragraph>
                         Ações
                     </Typography>
                 </Grid>

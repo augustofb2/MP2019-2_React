@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
     corpo: {
         minHeight: '92vh',
-        backgroundColor: '#cacaca;',
+        backgroundColor: '#cacaca',
         display: 'flex',
         flexDirection: 'column',
         paddingTop: '3rem'
