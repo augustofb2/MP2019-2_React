@@ -4,12 +4,11 @@ import { makeStyles } from '@material-ui/styles';
 const useStyles = makeStyles(theme => ({
     corpo: {
         minHeight: '100vh',
-        backgroundColor: '#535b6b;',
+        backgroundColor: '#909bb1;',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-
     }
 }))
 

@@ -1,14 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 import { ThemeProvider } from '@material-ui/styles';
 import theme from './theme/Tema';
 import ContentSection from './layout/ContentSection';
+import MainMenu from './pages/main-menu/MainMenu';
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
-      <ContentSection/>
+      <ContentSection>
+        <MainMenu/>
+      </ContentSection>
     </ThemeProvider>
   );
 }
