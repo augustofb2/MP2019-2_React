@@ -68,7 +68,7 @@ class Jogo {
 
   cumprirObrigacoes() {
     const horas = this.getTempoObrigacoes();
-    this.hora += horas;
+    this.avancarTempo(horas);
     this.aluno.estresse += horas * 3;
     if (this.aluno.estresse > 100) { this.aluno.estresse = 100; }
     this.aluno.cansaco += horas * 3;

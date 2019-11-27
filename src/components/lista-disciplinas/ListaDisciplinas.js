@@ -34,7 +34,7 @@ export default function ListaDisciplina(props) {
             </Typography>
             <Grid container spacing={6} >
                 {props.session.aluno.disciplinas.map((item) => (
-                <Grid item xs={4}>
+                <Grid key={item.nome} item xs={4}>
                     <Card className={classes.card}>
                         <CardContent>
                             <Typography variant={'h6'} paragraph>
