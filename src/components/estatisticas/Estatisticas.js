@@ -25,7 +25,7 @@ export default function Estatisticas(props){
 
     return(
         <Grid container spacing={4}>
-            <Grid item xs={8}>
+            <Grid item xs={7}>
                 <Card className={classes.card}>
                     <CardContent>
                         <Typography variant={'h6'}>
@@ -59,7 +59,7 @@ export default function Estatisticas(props){
                     </CardContent>
                 </Card>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={5}>
                 <Card className={classes.card}>
                     <CardContent>
                         <Typography variant={'h6'}>
@@ -75,7 +75,7 @@ export default function Estatisticas(props){
                             Dia da semana: {dias[props.session.diaSemana]}
                         </Typography>
                         <Typography className={classes.detalhes}>
-                            Hora: {props.session.hora}h
+                            Hora: {props.session.hora}h00
                         </Typography>
                     </CardContent>
                 </Card>

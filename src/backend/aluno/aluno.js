@@ -46,6 +46,7 @@ class Aluno {
         reprovadas.push(item);
       } else {
         aprovadas.push(item);
+        this.creditos += item.creditos;
       }
     });
     this.disciplinas = reprovadas;
@@ -69,21 +70,24 @@ class Aluno {
     if (this.estresse < 0) { this.estresse = 0; }
     this.cansaco = this.cansaco - (horas * 5);
     if (this.cansaco < 0) { this.cansaco = 0; }
-    if (this.aluno.cansaco < 100) { this.cansaco = 100; }
-    this.aluno.sono += horas * 6;
+    if (this.cansaco > 100) { this.cansaco = 100; }
+    this.sono += horas * 6;
+    if (this.sono > 100) { this.sono = 100; }
   }
 
   estudar(horas, disciplina) {
     // this.disciplinas.forEach((item) => {
     //   if (item.nome === nome) { item.estudar(horas, this.lazer); }
     // });
-    disciplina.estudar(horas, this.lazer)
+    disciplina.estudar(horas, this.lazer, this.estresse, this.sono, this.cansaco);
     this.estresse += horas * 3;
     if (this.estresse > 100) { this.estresse = 100; }
     this.cansaco += horas * 3;
-    if (this.cansaco < 100) { this.cansaco = 100; }
+    if (this.cansaco > 100) { this.cansaco = 100; }
     this.lazer -= horas * 3;
     if (this.lazer < 0) { this.lazer = 0; }
+    this.sono += horas * 6;
+    if (this.sono > 100) { this.sono = 100; }
   }
 
   gerarNotas() {

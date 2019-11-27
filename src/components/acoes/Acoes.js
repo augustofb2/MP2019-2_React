@@ -28,6 +28,11 @@ export default function Acoes(props){
         setHoras(newValue);
       };
 
+    const handleEstudar = (disciplina) => {
+        props.session.estudar(horas, disciplina);
+        props.atualizar();
+    }
+
     return (
         <Grid container spacing={6} >
                 {props.session.aluno.disciplinas.map((item) => (
@@ -63,7 +68,7 @@ export default function Acoes(props){
                                 onChange={handleSliderChange}
                                 value={horas}
                             />
-                            <Button size={'small'} color={'primary'} variant={'contained'}>Estudar</Button>
+                            <Button onClick={() => {handleEstudar(item)}} size={'small'} color={'primary'} variant={'contained'}>Estudar</Button>
                         </CardActions>
                     </Card>
                 </Grid>
@@ -78,6 +83,10 @@ export default function Acoes(props){
                                 Sono: 
                             </Typography>
                             <LinearProgress color={'primary'} variant={'determinate'} value={props.session.aluno.sono} />
+                            <Typography className={classes.detalhes}>
+                                Cansaço: 
+                            </Typography>
+                            <LinearProgress color={'primary'} variant={'determinate'} value={props.session.aluno.cansaco} />
                         </CardContent>
                         <CardActions>
                             <Typography className={classes.detalhes}>
@@ -95,6 +104,44 @@ export default function Acoes(props){
                                 value={horas}
                             />
                             <Button size={'small'} color={'primary'} variant={'contained'}>Dormir</Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
+                <Grid item xs={4}>
+                    <Card className={classes.card}>
+                        <CardContent>
+                            <Typography variant={'h6'}>
+                                Se divertir
+                            </Typography>
+                            <Typography className={classes.detalhes}>
+                                Lazer: 
+                            </Typography>
+                            <LinearProgress color={'primary'} variant={'determinate'} value={props.session.aluno.lazer} />
+                            <Typography className={classes.detalhes}>
+                                Cansaço: 
+                            </Typography>
+                            <LinearProgress color={'primary'} variant={'determinate'} value={props.session.aluno.cansaco} />
+                            <Typography className={classes.detalhes}>
+                                Estresse: 
+                            </Typography>
+                            <LinearProgress color={'primary'} variant={'determinate'} value={props.session.aluno.estresse} />
+                        </CardContent>
+                        <CardActions>
+                            <Typography className={classes.detalhes}>
+                                Horas:
+                            </Typography>
+                            <Slider
+                                defaultValue={1}
+                                aria-labelledby="discrete-slider"
+                                valueLabelDisplay="auto"
+                                step={1}
+                                marks
+                                min={1}
+                                max={props.session.calcularTempoDisponivel()}
+                                onChange={handleSliderChange}
+                                value={horas}
+                            />
+                            <Button size={'small'} color={'primary'} variant={'contained'}>Lazer</Button>
                         </CardActions>
                     </Card>
                 </Grid>

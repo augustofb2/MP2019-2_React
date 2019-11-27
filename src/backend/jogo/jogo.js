@@ -35,6 +35,7 @@ class Jogo {
     this.aluno.gerarNotas();
     this.aluno.processarDisciplinas();
     this.aluno.atualizarCreditos();
+    this.iniciarSemestre();
   }
 
   getTempoObrigacoes() {
@@ -69,18 +70,163 @@ class Jogo {
     const horas = this.getTempoObrigacoes();
     this.hora += horas;
     this.aluno.estresse += horas * 3;
-    if (this.aluno.estresse > 100) { this.estresse = 100; }
+    if (this.aluno.estresse > 100) { this.aluno.estresse = 100; }
     this.aluno.cansaco += horas * 3;
-    if (this.aluno.cansaco < 100) { this.cansaco = 100; }
+    if (this.aluno.cansaco > 100) { this.aluno.cansaco = 100; }
     this.aluno.sono += horas * 6;
-    if (this.aluno.sono < 100) { this.sono = 100; }
+    if (this.aluno.sono > 100) { this.aluno.sono = 100; }
     this.aluno.lazer -= horas * 3;
-    if (this.aluno.lazer < 0) { this.lazer = 0; }
+    if (this.aluno.lazer < 0) { this.aluno.lazer = 0; }
     
   }
 
   avancarPeriodo() {
     this.periodo += 1;
+  }
+
+  estudar(horas, disciplina) {
+    this.aluno.estudar(horas, disciplina);
+    this.avancarTempo(horas);
+  }
+
+  divertir(horas) {
+    this.aluno.lazer(horas);
+    this.avancarTempo(horas);
+  }
+
+  dormir(horas) {
+    this.aluno.dormir(horas);
+    this.avancarTempo(horas);
+  }
+
+  gerarPrevisao() {
+    let mediaNotas = 0;
+    if(this.aluno.aprovadas.length > 0) { 
+      mediaNotas = this.aluno.aprovadas.map((item) => item.nota).reduce((total, num) => total + num) / this.aluno.aprovadas.length;
+    }
+
+    const tempoGraduacao = Math.round((182 - this.aluno.creditos) / 40);
+
+    if(mediaNotas <= 25) { return this.previsaoRuim(tempoGraduacao); }
+    else if(mediaNotas <= 50) { return this.previsaoBaixa(tempoGraduacao); }
+    else if(mediaNotas <= 75) { return this.previsaoMedia(tempoGraduacao); }
+    else if(mediaNotas < 90) { return this.previsaoBoa(tempoGraduacao); }
+    return this.previsaoOtima(tempoGraduacao);
+  }
+
+  previsaoRuim(tempo){
+    let i;
+    const renda = [];
+    const rendaAcumulada = [];
+    for(i = 0; i < tempo; i++){
+      renda.push(0);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for(i = tempo; i < tempo + 5; i++){
+      renda.push(2500);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for( i = tempo + 5; i < 10; i++){
+      renda.push(4100);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    return(renda.map((item, index) => ({
+      name: `Ano ${index+1}`,
+      Renda: item,
+      Acumulado: rendaAcumulada[index],
+    })));
+  }
+
+  previsaoBaixa(tempo){
+    let i;
+    const renda = [];
+    const rendaAcumulada = [];
+    for(i = 0; i < tempo; i++){
+      renda.push(0);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for(i = tempo; i < tempo + 2; i++){
+      renda.push(2500);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for( i = tempo + 2; i < tempo + 7 && i < 10; i++){
+      renda.push(4100);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for( i = tempo + 7; i < 10; i++){
+      renda.push(7000);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    return(renda.map((item, index) => ({
+      name: `Ano ${index+1}`,
+      Renda: item,
+      Acumulado: rendaAcumulada[index],
+    })));
+  }
+
+  previsaoMedia(tempo){
+    let i;
+    const renda = [];
+    const rendaAcumulada = [];
+    for(i = 0; i < tempo; i++){
+      renda.push(0);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for(i = tempo; i < tempo + 2; i++){
+      renda.push(4100);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for( i = tempo + 2; i < 10; i++){
+      renda.push(7000);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    return(renda.map((item, index) => ({
+      name: `Ano ${index+1}`,
+      Renda: item,
+      Acumulado: rendaAcumulada[index],
+    })));
+  }
+
+  previsaoBoa(tempo){
+    let i;
+    const renda = [];
+    const rendaAcumulada = [];
+    for(i = 0; i < tempo; i++){
+      renda.push(0);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for(i = tempo; i < tempo + 1; i++){
+      renda.push(4100);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for( i = tempo + 1; i < 10; i++){
+      renda.push(7000);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    return(renda.map((item, index) => ({
+      name: `Ano ${index+1}`,
+      Renda: item,
+      Acumulado: rendaAcumulada[index],
+    })));
+  }
+
+  previsaoOtima(tempo){
+    let i;
+    const renda = [];
+    const rendaAcumulada = [];
+    for(i = 0; i < tempo; i++){
+      renda.push(0);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    for(i = tempo; i < 10; i++){
+      renda.push(7000);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+    }
+    return(renda.map((item, index) => ({
+      name: `Ano ${index+1}`,
+      Renda: item,
+      Acumulado: rendaAcumulada[index],
+    })));
   }
 
 }
