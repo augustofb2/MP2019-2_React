@@ -45,4 +45,9 @@ it('Estudar para disciplina', () => {
     const disciplina = new Disciplina(disciplinaTeste);
     disciplina.estudar(5, 30, 20, 10, 0);
     expect(disciplina.desempenho).not.toBe(disciplinaTeste.desempenho);
+    disciplina.estudar(2000, 30, 20, 10, 0);
+    expect(disciplina.desempenho).toBe(100);
+    disciplina.desempenho = -30;
+    disciplina.estudar(5, 30, 20, 10, 0);
+    expect(disciplina.desempenho).toBe(0);
 })
