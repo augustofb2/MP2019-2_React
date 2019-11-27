@@ -69,12 +69,15 @@ class Aluno {
     if (this.estresse < 0) { this.estresse = 0; }
     this.cansaco = this.cansaco - (horas * 5);
     if (this.cansaco < 0) { this.cansaco = 0; }
+    if (this.aluno.cansaco < 100) { this.cansaco = 100; }
+    this.aluno.sono += horas * 6;
   }
 
-  estudar(nome, horas) {
-    this.disciplinas.forEach((item) => {
-      if (item.nome === nome) { item.estudar(horas, this.lazer); }
-    });
+  estudar(horas, disciplina) {
+    // this.disciplinas.forEach((item) => {
+    //   if (item.nome === nome) { item.estudar(horas, this.lazer); }
+    // });
+    disciplina.estudar(horas, this.lazer)
     this.estresse += horas * 3;
     if (this.estresse > 100) { this.estresse = 100; }
     this.cansaco += horas * 3;

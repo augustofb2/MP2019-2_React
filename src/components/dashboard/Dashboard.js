@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Grid, Typography, Paper, Container, Card } from '@material-ui/core';
 import Estatisticas from '../estatisticas/Estatisticas';
+import Acoes from '../acoes/Acoes';
 
 const useStyles = makeStyles(theme =>( {
     container: {
@@ -46,6 +47,7 @@ export default function Dashboard(props) {
                     <Typography variant={'h5'} paragraph>
                         Ações
                     </Typography>
+                    <Acoes session={props.session}/>
                 </Grid>
             </Grid>
         </Container>
