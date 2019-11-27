@@ -12,7 +12,7 @@ class Disciplina {
   }
 
   avaliar() {
-    if (this.nota < 50) { this.reprovado = true; }
+    if (this.nota < 50) { this.reprovado += 1; }
   }
 
   gerarNota() {
@@ -23,15 +23,8 @@ class Disciplina {
     this.estudo += 1;
     if (this.desempenho === 0) { this.desempenho = 1; }
 
-    if (this.creditos === 2) {
-      this.desempenho += Math.round((4.725 * this.desempenho * horas * this.estudo + (lazer - estresse - sono - cansaco) / 4) / 20);
-    } else if (this.creditos === 4) {
-      this.desempenho += Math.round((3.9 * this.desempenho * horas * this.estudo + (lazer - estresse - sono - cansaco) / 4) / 20);
-    } else if (this.creditos === 6) {
-      this.desempenho += Math.round((2.7 * this.desempenho * horas * this.estudo + (lazer - estresse - sono - cansaco) / 4) / 20);
-    } else if (this.creditos === 7) {
-      this.desempenho += Math.round((1.35 * this.desempenho * horas * this.estudo + (lazer - estresse - sono - cansaco) / 4) / 20);
-    }
+    this.desempenho += Math.round(((9.5/this.creditos) * this.desempenho * horas * this.estudo + (lazer - estresse - sono - cansaco) / 4) / 20);
+
     if (this.desempenho > 100) { this.desempenho = 100; }
     if (this.desempenho < 0) { this.desempenho = 0; }
   }

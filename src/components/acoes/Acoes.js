@@ -33,6 +33,16 @@ export default function Acoes(props){
         props.atualizar();
     }
 
+    const handleDormir = () => {
+        props.session.dormir(horas);
+        props.atualizar();
+    }
+
+    const handleDivertir = () => {
+        props.session.divertir(horas);
+        props.atualizar();
+    }
+
     return (
         <Grid container spacing={6} >
                 {props.session.aluno.disciplinas.map((item) => (
@@ -103,7 +113,7 @@ export default function Acoes(props){
                                 onChange={handleSliderChange}
                                 value={horas}
                             />
-                            <Button size={'small'} color={'primary'} variant={'contained'}>Dormir</Button>
+                            <Button onClick={() => {handleDormir()}} size={'small'} color={'primary'} variant={'contained'}>Dormir</Button>
                         </CardActions>
                     </Card>
                 </Grid>
@@ -141,7 +151,7 @@ export default function Acoes(props){
                                 onChange={handleSliderChange}
                                 value={horas}
                             />
-                            <Button size={'small'} color={'primary'} variant={'contained'}>Lazer</Button>
+                            <Button onClick={() => {handleDivertir()}} size={'small'} color={'primary'} variant={'contained'}>Lazer</Button>
                         </CardActions>
                     </Card>
                 </Grid>

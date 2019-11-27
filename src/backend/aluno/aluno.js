@@ -65,7 +65,7 @@ class Aluno {
     if (this.cansaco < 0) { this.cansaco = 0; }
   }
 
-  lazer(horas) {
+  divertir(horas) {
     this.estresse = this.estresse - (horas * 10);
     if (this.estresse < 0) { this.estresse = 0; }
     this.cansaco = this.cansaco - (horas * 5);
@@ -73,6 +73,8 @@ class Aluno {
     if (this.cansaco > 100) { this.cansaco = 100; }
     this.sono += horas * 6;
     if (this.sono > 100) { this.sono = 100; }
+    this.lazer += 5 * horas;
+    if (this.lazer > 100) { this.lazer = 100; }
   }
 
   estudar(horas, disciplina) {

@@ -90,7 +90,7 @@ class Jogo {
   }
 
   divertir(horas) {
-    this.aluno.lazer(horas);
+    this.aluno.divertir(horas);
     this.avancarTempo(horas);
   }
 
