@@ -5,7 +5,7 @@ import { ResponsiveContainer, LineChart,
 
 export default function Previsoes(props) {
 
-    const [data, setData] = useState(props.session.gerarPrevisao());
+    const [data] = useState(props.session.gerarPrevisao());
 
     return(
         <ResponsiveContainer height="90%" >

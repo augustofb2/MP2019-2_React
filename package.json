@@ -1,5 +1,8 @@
 {
   "name": "mp-projeto-final",
+  "jest": {
+    "coveragePathIgnorePatterns": ["<rootDir>/build/", "<rootDir>/node_modules/", "<rootDir>/src/index.js", "<rootDir>/src/serviceWorker.js"]
+  },
   "version": "0.1.0",
   "private": true,
   "dependencies": {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Grid, Typography, Paper, Container, Card } from '@material-ui/core';
+import { Grid, Typography, Paper, Container } from '@material-ui/core';
 import Estatisticas from '../estatisticas/Estatisticas';
 import Acoes from '../acoes/Acoes';
 import Previsoes from '../previsoes/Previsoes';
