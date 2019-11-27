@@ -1,6 +1,6 @@
 import Aluno from '../aluno/aluno';
 import Disciplina from '../disciplina/disciplina';
-import Estagio from '../estagio/estagio';
+// import Estagio from '../estagio/estagio';
 
 class Jogo {
   constructor(inicial) {
