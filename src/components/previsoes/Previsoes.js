@@ -8,7 +8,7 @@ export default function Previsoes(props) {
     const [data] = useState(props.session.gerarPrevisao());
 
     return(
-        <ResponsiveContainer height="90%" >
+        <ResponsiveContainer height="90%" width="100%" >
             <LineChart data={data} >
                 <CartesianGrid />
                 <XAxis dataKey="name" />

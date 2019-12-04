@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Acoes from './Acoes';
+import ListaEstagios from './ListaEstagios';
 import jogo from '../../backend/objetos/jogo';
 import Jogo from '../../backend/jogo/jogo';
 
@@ -9,6 +9,7 @@ const session = new Jogo(jogo);
 it('renders without crashing', () => {
   const div = document.createElement('div');
   session.iniciarSemestre();
-  ReactDOM.render(<Acoes session={session} />, div);
+  session.iniciarSemestre();
+  ReactDOM.render(<ListaEstagios session={session} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

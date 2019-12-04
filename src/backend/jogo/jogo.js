@@ -1,6 +1,6 @@
 import Aluno from '../aluno/aluno';
 import Disciplina from '../disciplina/disciplina';
-// import Estagio from '../estagio/estagio';
+import Estagio from '../estagio/estagio';
 
 class Jogo {
   constructor(inicial) {
@@ -9,9 +9,9 @@ class Jogo {
     this.diaSemana = inicial.diaSemana;
     this.semana = inicial.semana;
     this.periodo = inicial.periodo;
-    this.disciplinas = inicial.disciplinas.map((disciplina) => new Disciplina(disciplina));
-    // this.estagios = inicial.estagios.map((estagio) => new Estagio(estagio));
 
+    this.disciplinas = inicial.disciplinas.map((disciplina) => new Disciplina(disciplina));
+    this.estagios = inicial.estagios.map((estagio) => new Estagio(estagio));
     this.aluno = new Aluno(inicial.aluno);
   }
 
@@ -22,7 +22,6 @@ class Jogo {
     this.tempo = 0;
     this.hora = 7;
     this.diaSemana = 0;
-    this.cumprirObrigacoes();
   }
 
   verificarFimSemesre() {
@@ -34,12 +33,12 @@ class Jogo {
   terminarSemestre() {
     this.aluno.gerarNotas();
     this.aluno.processarDisciplinas();
-    this.aluno.atualizarCreditos();
+    this.aluno.dinheiro += this.aluno.estagio.remuneracao * 6;
     this.iniciarSemestre();
   }
 
   getTempoObrigacoes() {
-    return Math.ceil(2 + this.aluno.getCreditos() / 5);
+    return Math.ceil(2 + this.aluno.getCreditos() / 5) + this.aluno.getHorasEstagio();
   }
 
   avancarTempo(horas) {
@@ -119,16 +118,16 @@ class Jogo {
     const renda = [];
     const rendaAcumulada = [];
     for(i = 0; i < tempo; i++){
-      renda.push(0);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      renda.push(this.aluno.estagio.remuneracao);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for(i = tempo; i < tempo + 5; i++){
       renda.push(2500);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for( i = tempo + 5; i < 10; i++){
       renda.push(4100);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     return(renda.map((item, index) => ({
       name: `Ano ${index+1}`,
@@ -142,20 +141,20 @@ class Jogo {
     const renda = [];
     const rendaAcumulada = [];
     for(i = 0; i < tempo; i++){
-      renda.push(0);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      renda.push(this.aluno.estagio.remuneracao);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for(i = tempo; i < tempo + 2; i++){
       renda.push(2500);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for( i = tempo + 2; i < tempo + 7 && i < 10; i++){
       renda.push(4100);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for( i = tempo + 7; i < 10; i++){
       renda.push(7000);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     return(renda.map((item, index) => ({
       name: `Ano ${index+1}`,
@@ -169,16 +168,16 @@ class Jogo {
     const renda = [];
     const rendaAcumulada = [];
     for(i = 0; i < tempo; i++){
-      renda.push(0);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      renda.push(this.aluno.estagio.remuneracao);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for(i = tempo; i < tempo + 2; i++){
       renda.push(4100);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for( i = tempo + 2; i < 10; i++){
       renda.push(7000);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     return(renda.map((item, index) => ({
       name: `Ano ${index+1}`,
@@ -192,16 +191,16 @@ class Jogo {
     const renda = [];
     const rendaAcumulada = [];
     for(i = 0; i < tempo; i++){
-      renda.push(0);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      renda.push(this.aluno.estagio.remuneracao);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for(i = tempo; i < tempo + 1; i++){
       renda.push(4100);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for( i = tempo + 1; i < 10; i++){
       renda.push(7000);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     return(renda.map((item, index) => ({
       name: `Ano ${index+1}`,
@@ -215,18 +214,26 @@ class Jogo {
     const renda = [];
     const rendaAcumulada = [];
     for(i = 0; i < tempo; i++){
-      renda.push(0);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      renda.push(this.aluno.estagio.remuneracao);
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     for(i = tempo; i < 10; i++){
       renda.push(7000);
-      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13));
+      rendaAcumulada.push(renda.reduce((total, num) => total + num * 13 + this.aluno.getRenda()));
     }
     return(renda.map((item, index) => ({
       name: `Ano ${index+1}`,
       Renda: item,
       Acumulado: rendaAcumulada[index],
     })));
+  }
+
+  matricularEstagio(estagio){
+    this.aluno.matricularEstagio(estagio);
+  }
+
+  zerarEstagio(){
+    this.aluno.zerarEstagio();
   }
 
 }

@@ -1,4 +1,5 @@
 import Disciplina from '../disciplina/disciplina';
+import Estagio from '../estagio/estagio';
 
 class Aluno {
   constructor(inicial) {
@@ -78,9 +79,6 @@ class Aluno {
   }
 
   estudar(horas, disciplina) {
-    // this.disciplinas.forEach((item) => {
-    //   if (item.nome === nome) { item.estudar(horas, this.lazer); }
-    // });
     disciplina.estudar(horas, this.lazer, this.estresse, this.sono, this.cansaco);
     this.estresse += horas * 3;
     if (this.estresse > 100) { this.estresse = 100; }
@@ -112,13 +110,27 @@ class Aluno {
     return this.estagio.horas;
   }
 
-  atualizarCreditos() {
-    this.creditos = this.aprovadas.map((item) => item.creditos).reduce((total, num) => total + num);
-  }
-
   avancarSemestre() {
     this.semestre += 1;
   }
+
+  matricularEstagio(estagio){
+    this.estagio = new Estagio(estagio);
+  }
+
+  zerarEstagio(){
+    this.estagio = new Estagio({
+      empresa: '',
+      horas: 0,
+      remuneracao: 0,
+      semestre: 0,
+    });
+  }
+
+  getRenda(){
+    return this.estagio.remuneracao * 12;
+  }
+
 }
 
 export default Aluno;
