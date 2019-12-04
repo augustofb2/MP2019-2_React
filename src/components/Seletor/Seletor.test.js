@@ -23,6 +23,7 @@ it('renders without crashing 1', () => {
   it('renders without crashing 3', () => {
     const session = new Jogo(jogo);
     session.avancarPeriodo();
+    session.avancarPeriodo();
     const div = document.createElement('div');
     ReactDOM.render(<Seletor session={session} />, div);
     ReactDOM.unmountComponentAtNode(div);

@@ -9,7 +9,7 @@ const session = new Jogo(jogo);
 it('renders without crashing', () => {
   const div = document.createElement('div');
   session.iniciarSemestre();
-  session.iniciarSemestre();
+  session.aluno.semestre = 8;
   ReactDOM.render(<ListaEstagios session={session} />, div);
   ReactDOM.unmountComponentAtNode(div);
 });

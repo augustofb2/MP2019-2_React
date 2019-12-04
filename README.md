@@ -1,5 +1,11 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Introdução
+
+Trabalho final da disciplina de Métodos de Programação da Universidade de Brasília 2019/2.
+
+Integrantes:
+
 ## Available Scripts
 
 In the project directory, you can run:
