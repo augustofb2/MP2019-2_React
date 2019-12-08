@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/MP2019-2_React/static/css/main.498d002a.chunk.css",
-    "main.js": "/MP2019-2_React/static/js/main.037d66f2.chunk.js",
-    "main.js.map": "/MP2019-2_React/static/js/main.037d66f2.chunk.js.map",
+    "main.js": "/MP2019-2_React/static/js/main.a00ce11f.chunk.js",
+    "main.js.map": "/MP2019-2_React/static/js/main.a00ce11f.chunk.js.map",
     "runtime-main.js": "/MP2019-2_React/static/js/runtime-main.6b6672e1.js",
     "runtime-main.js.map": "/MP2019-2_React/static/js/runtime-main.6b6672e1.js.map",
-    "static/js/2.1c3e482a.chunk.js": "/MP2019-2_React/static/js/2.1c3e482a.chunk.js",
-    "static/js/2.1c3e482a.chunk.js.map": "/MP2019-2_React/static/js/2.1c3e482a.chunk.js.map",
+    "static/js/2.4ab2f286.chunk.js": "/MP2019-2_React/static/js/2.4ab2f286.chunk.js",
+    "static/js/2.4ab2f286.chunk.js.map": "/MP2019-2_React/static/js/2.4ab2f286.chunk.js.map",
     "index.html": "/MP2019-2_React/index.html",
-    "precache-manifest.ab15b70e0e5ac692955ee318f252702b.js": "/MP2019-2_React/precache-manifest.ab15b70e0e5ac692955ee318f252702b.js",
+    "precache-manifest.d537356c7aacd4ecf00363184a86240b.js": "/MP2019-2_React/precache-manifest.d537356c7aacd4ecf00363184a86240b.js",
     "service-worker.js": "/MP2019-2_React/service-worker.js",
     "static/css/main.498d002a.chunk.css.map": "/MP2019-2_React/static/css/main.498d002a.chunk.css.map"
   },
   "entrypoints": [
     "static/js/runtime-main.6b6672e1.js",
-    "static/js/2.1c3e482a.chunk.js",
+    "static/js/2.4ab2f286.chunk.js",
     "static/css/main.498d002a.chunk.css",
-    "static/js/main.037d66f2.chunk.js"
+    "static/js/main.a00ce11f.chunk.js"
   ]
 }
